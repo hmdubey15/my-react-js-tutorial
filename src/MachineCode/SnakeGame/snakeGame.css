@@ -1,0 +1,35 @@
+.game-grid {
+    height: 500px;
+    width: 500px;
+    background-color: yellow;
+    border: 3px solid blue;
+    margin: 20px auto;
+    display: grid;
+    gap: 3px;
+    font-size: 14px;
+}
+
+.game-grid>div {
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+}
+
+.empty-block {
+    background-color: aqua;
+
+}
+
+.snake-head {
+    background-color: grey;
+}
+
+.snake-body {
+    background-color: black;
+}
+
+.point-block {
+    background-color: red;
+}
