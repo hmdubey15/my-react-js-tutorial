@@ -1,0 +1,57 @@
+$secondHandGap: 50px;
+$minuteHandGap: 80px;
+$hourHandGap: 110px;
+$timeTextGap: 10px; 
+$clockDiameter: 500px;
+
+.clock {
+    height: $clockDiameter;
+    width: $clockDiameter;
+    border-radius: 50%;
+    border: 3px solid red;
+    margin: 100px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: darkgreen;
+}
+
+.second-hand {
+    height: calc(($clockDiameter / 2) - $secondHandGap);
+    width: 2px;
+    background-color: aqua;
+    margin-bottom: calc(50% - $secondHandGap);
+    transform-origin: bottom;
+    position: absolute;
+    z-index: 3;
+}
+
+.minute-hand {
+    height: calc(($clockDiameter / 2) - $minuteHandGap);
+    width: 4px;
+    background-color: coral;
+    margin-bottom: calc(50% - $minuteHandGap);
+    transform-origin: bottom;
+    position: absolute;
+    z-index: 2;
+}
+
+.hour-hand {
+    height: calc(($clockDiameter / 2) - $hourHandGap);
+    width: 6px;
+    background-color: yellow;
+    margin-bottom: calc(50% - $hourHandGap);
+    transform-origin: bottom;
+    position: absolute;
+    z-index: 1;
+}
+
+.time-stamp {
+    position: absolute;
+    bottom: calc($clockDiameter / 2);
+    font-size: 24px;
+    font-weight: bold;
+    height: calc(($clockDiameter / 2) - $timeTextGap);
+    transform-origin: bottom;
+}
