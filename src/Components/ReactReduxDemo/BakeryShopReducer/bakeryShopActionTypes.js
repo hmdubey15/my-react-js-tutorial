@@ -1,0 +1,6 @@
+const REDUCER_ACTION_TYPES = {
+    BUY_CAKE: 'BUY_CAKE',
+    BUY_ICECREAM: 'BUY_ICECREAM',
+}
+
+export default REDUCER_ACTION_TYPES;

@@ -1,0 +1,24 @@
+.list {
+    width: 600px;
+    height: 600px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: yellow;
+}
+
+.item {
+    background-color: crimson;
+    width: 80%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: all-scroll;
+}
+
+.item.dragging {
+    opacity: 0.3;
+}
