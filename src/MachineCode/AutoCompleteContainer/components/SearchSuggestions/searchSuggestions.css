@@ -1,0 +1,8 @@
+.search-suggestions-container {
+    position: absolute;
+    z-index: 10;
+    max-height: 300px;
+    overflow: auto;
+    background-color: antiquewhite;
+    width: 360px;
+}

@@ -1,0 +1,3 @@
+export const PROGRESS_BAR_COMPLETION_TIME = 3000;
+
+export const MAX_RUNNING_PROGRESS_BARS = 3;

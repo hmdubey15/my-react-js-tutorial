@@ -1,0 +1,32 @@
+@keyframes scrollLoop {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+.tile-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    line-height: 0;
+    scroll-behavior: smooth;
+}
+
+.tile-track {
+    width: 100%;
+    height: 100%;
+    animation: scrollLoop 3s linear infinite;
+    animation-fill-mode: forwards;
+  }
+
+.tile-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Chrome/Safari */
+  }
+
+.tile-track img {
+    height: 200px;
+    width: 400px;
+    object-fit: cover;
+}

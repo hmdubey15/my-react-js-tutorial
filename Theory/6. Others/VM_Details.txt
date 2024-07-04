@@ -1,0 +1,101 @@
+Tekion Corp is a company that specializes in providing cloud-native software solutions for the automotive retail industry. It manages all aspects of dealership operations from sales to service, finance, and inventory management in real-time.
+
+WHY IS THIS FEATURE NEEDED
+
+The dealership agent and a consumer are engaging through a chatbot integrated into the dealership's main website. The consumer expresses interest in a Chevrolet vehicle and seeks detailed information about its features, cost, after-sales service, and available discounts. The dealership agent proposes a live vehicle walkthrough and a comprehensive discussion via a video call feature embedded within the chatbot. The agent initiates the call, and the customer receives a notification with a button to join the call directly within the chat interface. They proceed with the call, discussing all aspects of the vehicle in detail.
+
+I led this project from end to end. From requirement gathering from PM to discussing designs with designers to implementing it from scratch. Initially it was meant to be used only in chatbot, but later it was decided that multiple teams will be using it. In fact I was called upon in Chat team especially for this project, initially I was handling internal tools.
+
+To summarise the need:
+
+- Live vehicle and showroom walkthrough
+- Discussing about vehicles, test drive appointments, after sales service, discount season, etc
+- Chat, negotiate with sales agents
+- Help with document understanding and e-signing
+
+
+VIDEO CALLING FEATURES:
+
+- Video Preview supported
+- Audio, Video call
+- Screen share
+- Multiple agents can join through public url / qr code. Call can be transferred also using those things. (Max 50 participants)
+- Video background blur/change
+- Realtime participants list view
+- Audio/Video Input/Output source changeable 
+- Active speaker detection and circling around that participant in participants list
+- Recording feature
+- Transcript feature (to be developed soon, it will provide insights about customer)
+- Right now, just agent can initiate call (but customer starting the call feature is under discussion)
+- Stylish animated loaders are integrated better UX
+- Window resizable
+- Network latency issue handled: Popup for it
+- Responsive app
+- Cross device and browser compatibility: Supports in macos, windows, ios and android (we tested it in chrome, mozila and safari)
+- Error cases handled in library itself
+- 85% test coverage through JEST
+- Event driven architecture, thus easily integrable: Any team can integrate in 50-60 lines of code on agent and consumer end.
+- Every feature of this product is configurable through props so that teams can integrate it with the features as per their requirement
+- Backward compatible with Twilio and Chime
+- Internationalisation
+
+
+HOW?
+
+- Used WebRTC for preview building (extract stream using navigator?.mediaDevices?.getUserMedia)
+- Used amazon-chime-sdk-js (Amazon Chime SDK is a set of real-time communications apis that developers can use to quickly add messaging, audio, video, and screen sharing capabilities to their web or mobile applications)
+- Called backend to fetch meeting id and other details which were needed to passed down to Chime APIs
+- After passing those details to Chime API, we get meeting session objects
+- Using meetingSession object, we register multiple event listeners like when other participant joins/leaves, mutes/unmutes, etc
+
+
+VM INTEGRATION STEPS:
+
+- Install virtual-meeting-platform package from company's npm registry
+- Import VirtualMeeting component and VirtualMeetingEvents event listener
+- Use the component in your react app and pass the mandatory and optional props:
+       - apiProps (header, baseUrl) : mandatory
+       - meeting title, audio/video/screen share which controls should be enabled : optional
+- Add MEETING_STARTED event listener on agent's end: this event will be triggered when call will be started by agent and it will receive the meeting room info object
+- Now integration layer has to consume room_info object, take room_id from it and pass it to consumer's end somehow (their logic)
+- After consumer receives the room_id, he has to render the VirtualMeeting component just like agent but he has to pass roomId prop as well.
+- Agent and consumer have to add another event listener: MEETING_ENDED - when meeting is closed, integration layer will unmount this VM component
+
+
+PLACES WHERE THIS LIBRARY IS USED:
+
+- It was one of the key features to be presented in NADA (National Automobile Dealers Association) demo: Url - https://www.youtube.com/watch?v=LM6DnNGga5Y&list=PLVFZ1F0neg2iio7dNGrbBeXw9WKvdK_yN  ----> 14:09
+- Chatbot of 5/6 dealers
+- Deals team
+- CRM team
+- Concierge team
+
+
+METRICS:
+
+15-20 create meeting api calls per day
+
+
+CHALLENGES FACED:
+
+- One of the major issue I faced was that the package `amazon-chime-sdk-js` that I was using for building VM required node version > 18 but one of the agent repos was running on node 14.17.0. So I tried using lower versions of package but they were either buggy or had different implementation than the documentation. So in order to solve this problem, instead of using functionalities from package directly, I created a bundle for it by running webpack and manually injected that code in actual codebase. And from that bundle, I dynamically imported only those functionalities of package that were necessary for me (the one which required higher node version was not) and passed those functionalities to main component using the Context.
+- Then an issue I faced was audio output was not coming in ios browsers. Apparently apple disables auto play on audio elements. Some human interaction was needed for audio to start. But person can join the call with muted mic-camera, and he should still be able to listen the other people in call. Went through 100s of articles and docs to find solution but couldn't. Ultimately, I  solved this issue by rendering audio element in outermost component and accepted person joining call with button click as human interaction.
+- Lot of other issues I faced due to cross-device and cross-browser support. Like in ios device somehow, maximize button wasn't rendering. I had to do lot of research to find the issue. 
+- In changing audio/video input/output sources, handling edge cases was difficult. Like for example, some audio input source is selected (let's say earphone), but suddenly user plugs it out. I had to manually set it to some default (now what should be default?)
+- Had to handle error cases where screen share, audio/video permissions were disabled. We would start the call the call and user enables permission for them in between the call.
+- What if agent is already in a call, but then he minimizes the window and goes in another chat to start the call.
+- Showing loaders while shared screen or camera video was loading was loading was difficult --- api call got completed but still it took time for video to pop onto the screen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
