@@ -1,0 +1,17 @@
+.box-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.blank-element {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.colored-element {
+    border: 1px solid black;
+    background-color: lightgreen;
+    padding: 20px;
+}

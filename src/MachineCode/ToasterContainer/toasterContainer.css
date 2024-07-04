@@ -1,0 +1,51 @@
+.btn-container {
+    display: flex;
+    height: 100px;
+    width: 800px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: wheat;
+    margin: 50px auto;
+}
+
+.btn {
+    width: 140px;
+    height: 40px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+.toaster-container {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.toaster {
+    width: 400px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.success {
+    background-color: green;
+}
+
+.info {
+    background-color: blue;
+}
+
+.warning {
+    background-color: goldenrod;
+}
+
+.error {
+    background-color: red;
+}

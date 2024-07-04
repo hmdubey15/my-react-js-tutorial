@@ -1,0 +1,64 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.main-container>h1 {
+    margin: 0;
+}
+
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 40%;
+    max-height: 800px;
+    overflow: auto;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.job-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(103, 114, 230, 0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    gap: 20px;
+    height: 240px;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 240px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgba(103, 230, 219, 0.284);
+}
+
+.job-item>h4 {
+    margin: 0;
+}
+
+/* Adding ellipsis after multiple lines */
+.job-item>* {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    /* Number of lines before ellipsis */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main-container>button {
+    padding: 10px 20px;
+    font-size: 16px;
+}

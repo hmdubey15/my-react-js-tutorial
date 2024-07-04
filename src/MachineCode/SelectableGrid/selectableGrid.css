@@ -1,0 +1,25 @@
+.container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.matrix {
+    height: 300px;
+    width: 300px;
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    gap: 1px;
+    user-select: none;
+}
+
+.matrix-item {
+    background-color: green;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.selected-grid-item {
+    background-color: orange;
+}

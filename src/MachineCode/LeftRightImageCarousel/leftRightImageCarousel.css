@@ -1,0 +1,69 @@
+.carousel {
+    margin: 200px auto;
+    position: relative;
+    width: fit-content;
+}
+
+.carousel button {
+    cursor: pointer;
+    padding: 0;
+    aspect-ratio: 1 / 1;
+}
+
+.carousel>img {
+    display: block;
+}
+
+.slider {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    bottom: 10px;
+    background-color: #0008;
+    padding: 6px 12px;
+    border-radius: 12px;
+}
+
+.slider>button {
+    width: 8px;
+    border-radius: 50%;
+    border: none;
+}
+
+.slider>.selected-btn {
+    background-color: white;
+    transition: background-color 0.8s linear;
+}
+
+.slider>.unselected-btn {
+    background-color: darkgray;
+}
+
+.left-btn {
+    width: 36px;
+    left: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #0008;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 18px;
+}
+
+.right-btn {
+    width: 36px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #0008;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 18px;
+}
